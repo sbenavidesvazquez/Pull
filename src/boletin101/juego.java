@@ -1,72 +1,48 @@
-
 package boletin101;
 
 import javax.swing.JOptionPane;
 
-
 public class juego {
-    
-    String a;
-    int n, s, d;
-    
-    
-    public int opciones(){
-        
-        do{
-        a=JOptionPane.showInputDialog("Escoje los turnos entre 5 y 20");
-        d=Integer.parseInt(a);
-        }while(d<5 || d>20);
-        return d;
+
+    private int n;
+
+    public int pedirNum() {
+        do {
+            String dato = JOptionPane.showInputDialog("Inserta un número entre 1 y 50");
+            n = Integer.parseInt(dato);
+        } while (n < 1 || n > 50);
+        return n;
     }
-    
-    public void numAle(){
-        
-        do{
-            
-            a=JOptionPane.showInputDialog("inserta un número entre 0 y 50");
-        n=Integer.parseInt(a);
-        
-        }while(n<1 || n>50);
-         
-        
+
+    public int Intentos() {
+        do {
+            String valor = JOptionPane.showInputDialog("Inserte numero de intentos");
+            n = Integer.parseInt(valor);
+        } while (n <= 0);
+        return n;
     }
-    
-    public void empezar(){
-        
-        int i=1;
-        
-         for(int i=1;i<=d;i++){
-         
-        
-            
-            a=JOptionPane.showInputDialog("JUGADOR 2, Introduzca su respuesta");
-            s=Integer.parseInt(a);
-            if(s<n){
-                JOptionPane.showMessageDialog(null, "el número es mayor");
-                i=i+1;                
+
+    public double jugar() {
+        float resp = this.pedirNum();
+        double intento = this.Intentos();
+        float num;
+        do {
+            String dato = JOptionPane.showInputDialog("DALE AHÍ");
+            num = Float.parseFloat(dato);
+            n++;
+            if (num < resp) {
+                JOptionPane.showMessageDialog(null, "CALIENTEE");
             }
-            else if(s>n){
-                JOptionPane.showMessageDialog(null, "El número es menor");
-                i=i+1;
+            if (num > resp) {
+                JOptionPane.showMessageDialog(null, "FRIIIIOO");
             }
-           }  
-         
-        JOptionPane.showMessageDialog(null, "GANASTE");
-    
-         
-                JOptionPane.showMessageDialog(null, "PERDISTE");
+        } while (num != resp && n != intento);
+        if (num == resp) {
+            JOptionPane.showMessageDialog(null, "WIN");
         }
-        
-           
-          } 
-                         
-    
-    
-        
-    
-    
-        
-    
-
-
-
+        if (n == intento) {
+            JOptionPane.showMessageDialog(null, "LOSE");
+        }
+        return n;
+    }
+}
